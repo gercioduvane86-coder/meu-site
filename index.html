@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fraude académica e cópia nos testes</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#121418;color:#e8e8e8}
+a{color:#8ab4ff}
+header{position:sticky;top:0;background:#121418;padding:14px 16px;border-bottom:1px solid #333;z-index:10}
+nav{display:flex;gap:8px;overflow-x:auto;white-space:nowrap}
+nav button{border:0;background:transparent;color:#ccc;padding:8px 14px;border-radius:20px;font-size:14px;cursor:pointer}
+nav button.active{background:#fff;color:#000;font-weight:bold}
+.page{display:none;padding:16px;max-width:800px;margin:auto}
+.page.active{display:block}
+.hero{border-radius:12px;overflow:hidden;background:#222;padding:30px 18px;background-image:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.7)),url('foto-hero.jpg');background-size:cover;background-position:center}
+.hero h1{font-size:32px;line-height:1.15;margin-bottom:12px}
+.hero h1 span{background:#d32f2f;padding:0 4px}
+.hero p{line-height:1.5;color:#ddd;margin-bottom:18px}
+.btn{display:inline-block;padding:11px 16px;border-radius:8px;font-weight:bold;text-decoration:none;margin-right:8px}
+.btn-white{background:#fff;color:#000}
+.btn-outline{border:1px solid #fff;color:#fff}
+h2{font-size:24px;margin:28px 0 14px}
+.card{background:#1e232e;border-radius:12px;padding:18px;margin-bottom:12px}
+.card h3{margin-bottom:8px}
+.card p{color:#aab0bb;line-height:1.5;font-size:14px}
+.card a{color:#8ab4ff;font-weight:bold;font-size:13px;display:inline-block;margin-top:10px}
+.importante{border-left:3px solid #e53935;padding-left:12px;margin-bottom:16px}
+.importante b{display:block}
+.importante p{color:#ccc;line-height:1.5;font-size:14px}
+.pill{display:inline-block;background:#2a2f3a;padding:6px 10px;border-radius:20px;font-size:12px;margin:4px 4px 0 0}
+.obj{display:flex;gap:12px;background:#1e232e;padding:14px;border-radius:10px;margin-bottom:10px}
+.obj b{color:#fff}
+.obj p{font-size:13px;color:#aaa;line-height:1.5}
+.galeria{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.galeria figure{margin:0}
+.galeria img{width:100%;height:140px;object-fit:cover;border-radius:10px;background:#333;display:block}
+.galeria figcaption{font-size:12px;color:#bbb;line-height:1.4;margin-top:6px}
+label{display:block;font-weight:bold;margin:18px 0 8px}
+input,textarea{width:100%;background:#121418;border:1px solid #333;border-radius:10px;padding:14px;color:#fff;font-size:15px}
+textarea{height:120px;resize:vertical}
+.btn-enviar{background:#fff;color:#000;border:0;padding:13px 20px;border-radius:10px;font-weight:bold;margin-top:16px;cursor:pointer}
+footer{border-top:1px solid #333;padding:18px 16px;color:#999;font-size:13px;margin-top:30px}
+footer i{color:#ccc}
+.flex{display:flex;gap:24px;flex-wrap:wrap}
+.flex>div{flex:1;min-width:260px}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<button class="active" onclick="mostrar('inicio',this)">Início</button>
+<button onclick="mostrar('conteudo',this)">Conteúdo</button>
+<button onclick="mostrar('galeria',this)">Galeria e notícias</button>
+<button onclick="mostrar('contacto',this)">Contacto</button>
+</nav>
+</header>
+
+<!-- INICIO -->
+<section id="inicio" class="page active">
+  <div class="hero">
+    <h1>Fraude académica e <span>cópia</span><br><span>nos testes</span></h1>
+    <p>Bem-vindo ao nosso projecto. Estudámos porque é que os alunos copiam, o que isso causa à escola e o que podemos fazer para o evitar. Recolhemos informação junto de alunos e professores.</p>
+    <a class="btn btn-white" href="#" onclick="ir('conteudo');return false;">Ler o trabalho</a>
+    <a class="btn btn-outline" href="#" onclick="ir('galeria');return false;">Ver a galeria</a>
+  </div>
+  <h2>Explore o website</h2>
+  <div class="card"><h3>Conteúdo</h3><p>Introdução, objectivos, desenvolvimento, soluções e recomendações sobre a cópia nos testes.</p><a href="#" onclick="ir('conteudo');return false;">Abrir conteúdo</a></div>
+  <div class="card"><h3>Galeria e notícias</h3><p>Fotografias da recolha de informação na escola e novidades do projecto.</p><a href="#" onclick="ir('galeria');return false;">Abrir galeria</a></div>
+  <div class="card"><h3>Contacto</h3><p>Envie uma pergunta, uma opinião ou uma sugestão ao grupo.</p><a href="#" onclick="ir('contacto');return false;">Falar connosco</a></div>
+  <h2>Porque é importante</h2>
+  <div class="importante"><b>Quem copia</b><p>perde a aprendizagem e fica com lacunas que crescem de ano para ano.</p></div>
+  <div class="importante"><b>Quem estuda</b><p>é injustiçado quando uma nota copiada vale o mesmo que uma nota merecida.</p></div>
+  <div class="importante"><b>A escola</b><p>perde credibilidade junto das famílias e da comunidade.</p></div>
+</section>
+
+<!-- CONTEUDO -->
+<section id="conteudo" class="page">
+  <h2>Introdução</h2>
+  <p style="line-height:1.6;color:#ccc">A cópia existe em quase todas as escolas, mas muitas vezes não se fala dela. Querer boas notas, medo de reprovar e pressão dos colegas levam alguns alunos a copiar. Este trabalho não é para acusar ninguém, mas para entender o problema, mostrar as suas consequências e propor soluções.</p>
+  <p style="line-height:1.6;color:#ccc;margin-top:10px">A fraude académica é qualquer acto desonesto no processo de avaliação: copiar no teste, usar cábulas, deixar copiar, usar o telemóvel escondido ou apresentar um trabalho feito por outra pessoa.</p>
+  <h2>Objectivos</h2>
+  <div class="obj"><div>🎯</div><div><b>Compreender</b><p>Entender o que é a fraude académica e porque os alunos copiam.</p></div></div>
+  <div class="obj"><div>🔍</div><div><b>Analisar</b><p>Analisar as consequências para o aluno, para a turma e para a escola.</p></div></div>
+  <div class="obj"><div>🛡️</div><div><b>Prevenir</b><p>Propor medidas práticas para alunos, professores, famílias e direcção da escola.</p></div></div>
+  <h2>Desenvolvimento</h2>
+  <div><span class="pill">O que é</span><span class="pill">Causas</span><span class="pill">Consequências</span><span class="pill">Impacto na vida escolar</span></div>
+  <div class="card"><h3>Explicação do tema</h3><p>Fraude académica é qualquer acto desonesto que tem como objectivo obter vantagem numa avaliação. Copiar no teste é a forma mais conhecida, mas há outras: cábulas, telemóvel, copiar o trabalho do colega, ou pedir a outro para fazer o teste.</p></div>
+  <div class="card"><h3>Por que os alunos copiam?</h3><p>Medo de reprovar, falta de preparação, pressão da família, querer ter boas notas sem estudar, e ver outros a copiar sem consequências.</p></div>
+  <div class="card"><h3>Consequências</h3><p>Quem copia não aprende. Fica com lacunas que aparecem nos anos seguintes, perde confiança em si mesmo e pode ser apanhado e punido, perdendo a credibilidade.</p></div>
+  <h2>Soluções e medidas de prevenção</h2>
+  <div class="card"><h3>Preparar melhor os alunos</h3><p>Estudar com antecedência, rever a matéria, fazer exercícios e pedir ajuda ao professor quando não entende.</p></div>
+  <div class="card"><h3>Organizar bem as provas</h3><p>Variar os enunciados, afastar as carteiras e vigiar com justiça durante a prova.</p></div>
+  <div class="card"><h3>Fiscalizar com justiça</h3><p>Regras claras para todos, aplicadas da mesma forma a todos os alunos.</p></div>
+  <div class="card"><h3>Aplicar sanções claras</h3><p>Regulamento conhecido por todos, com consequências proporcionais à falta.</p></div>
+  <div class="card"><h3>Educar para os valores</h3><p>Conversar sobre honestidade, esforço e responsabilidade. Mostrar que a nota sem aprendizagem não vale nada.</p></div>
+  <div class="card"><h3>Valorizar a avaliação contínua</h3><p>Não depender só de um teste. Valorizar trabalhos, participação e testes pequenos ao longo do trimestre.</p></div>
+  <div class="card"><h3>Ensinar a citar fontes</h3><p>Ensinar a pesquisar, resumir com as próprias palavras e citar de onde veio a informação.</p></div>
+  <div class="card"><h3>Criar canais de apoio</h3><p>O aluno deve poder pedir ajuda sem medo. Tutorias, grupos de estudo e conversa com o professor.</p></div>
+  <h2>Recomendações</h2>
+  <div class="card"><h3>Aos alunos</h3><p>• Estudar com antecedência, não deixar para a véspera.<br>• Não levar cábulas. Se não sabes, diz ao professor.<br>• Ajudar o colega a estudar, não a copiar.</p></div>
+  <div class="card"><h3>Aos professores</h3><p>• Ser claro nas regras e justo na vigilância.<br>• Variar os testes e as formas de avaliar.<br>• Conversar em vez de só punir.</p></div>
+  <div class="card"><h3>Aos encarregados de educação</h3><p>• Acompanhar o estudo em casa.<br>• Valorizar o esforço e não só a nota.<br>• Manter contacto regular com a escola.</p></div>
+  <div class="card"><h3>À direcção da escola</h3><p>• Ter um regulamento de avaliação claro.<br>• Promover campanhas de honestidade.<br>• Promover concursos de boas práticas.</p></div>
+  <p style="line-height:1.6;color:#ccc"><b>Conclusão:</b> Uma nota conseguida com esforço vale mais do que cem notas copiadas.</p>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" class="page">
+  <h2>Galeria: recolha de informação na escola</h2>
+  <p style="color:#aaa;line-height:1.5">Fotografias do trabalho de campo do grupo. Clique numa imagem para a ampliar.</p><br>
+  <div class="galeria">
+    <figure><img src="foto1.jpg" alt="Entrevista"><figcaption>Entrevista na sala de aula: os alunos registam as respostas da professora.</figcaption></figure>
+    <figure><img src="foto2.jpg" alt="Conversa"><figcaption>Conversa com a professora no pátio da escola.</figcaption></figure>
+    <figure><img src="foto3.jpg" alt="Anotação"><figcaption>Anotação de dados no caderno durante a recolha de informação.</figcaption></figure>
+    <figure><img src="foto4.jpg" alt="Trabalho em grupo"><figcaption>Trabalho em grupo: perguntas e registo das respostas.</figcaption></figure>
+    <figure><img src="foto5.jpg" alt="Equipa"><figcaption>A equipa de pesquisa reunida na sala de aula.</figcaption></figure>
+    <figure><img src="foto6.jpg" alt="Debate"><figcaption>Debate entre colegas sobre a cópia nos testes.</figcaption></figure>
+  </div>
+  <h2>Notícias e avisos do projecto</h2>
+  <div class="card"><h3>Recolha de informação concluída</h3><p>O grupo entrevistou professores e conversou com colegas dentro e fora da sala de aula.</p></div>
+  <div class="card"><h3>Compromisso de honestidade</h3><p>Convidamos todos os alunos a assumir o compromisso de fazer os testes sem copiar.</p></div>
+  <div class="card"><h3>Envie a sua opinião</h3><p>Quer partilhar uma experiência ou sugestão? Use a página de contacto.</p><a href="#" onclick="ir('contacto');return false;">Ir para contacto</a></div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="page">
+  <div class="flex">
+    <div>
+      <h2>Contacto</h2>
+      <p style="color:#aaa;line-height:1.6">Escreva ao grupo.<br>Respondemos assim que possível.</p>
+      <form onsubmit="alert('Obrigado! A tua mensagem foi registada.');return false;">
+        <label>Nome</label><input type="text" required>
+        <label>E-mail</label><input type="email" required>
+        <label>Mensagem</label><textarea required></textarea>
+        <button class="btn-enviar" type="submit">Enviar mensagem</button>
+      </form>
+    </div>
+    <div>
+      <h2>Informações</h2>
+      <p><b>Professor orientador:</b></p><p style="margin:8px 0 16px">Lázaro</p>
+      <p><b>WhatsApp:</b></p><p style="margin:8px 0 16px"><a href="https://wa.me/258877342528">+258 87 734 2528</a></p>
+      <p><b>E-mail:</b></p><p style="margin:8px 0 16px"><a href="mailto:gercioduvane86@gmail.com">gercioduvane86@gmail.com</a></p>
+      <h3 style="margin-top:20px">Redes sociais</h3><br>
+      <a class="btn btn-outline" href="https://wa.me/258877342528">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>Trabalho de grupo sobre <i>Fraude académica e cópia nos testes.</i></footer>
+
+<script>
+function mostrar(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+function ir(id){
+  const btns=document.querySelectorAll('nav button');
+  const mapa={'inicio':0,'conteudo':1,'galeria':2,'contacto':3};
+  mostrar(id,btns[mapa[id]]);
+  return false;
+}
+</script>
+</body>
+</html>
